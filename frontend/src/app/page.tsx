@@ -11,6 +11,7 @@ const departments = [
   { name: "PreSales", href: "/presales", icon: "💡", tone: "presales", description: "Solutions and technical sales" },
   { name: "Sales", href: "/sales", icon: "📈", tone: "sales", description: "Customers and revenue" },
   { name: "Operations", href: "/operations", icon: "⚙️", tone: "ops", description: "Systems and operations" },
+  { name: "Scanner", href: "http://192.168.1.226:5173/", icon: "📦", tone: "scanner", description: "Inventory and barcode scanning", external: true },
 ];
 
 const suggestions = ["800G deployment guide", "Transceiver comparison", "PTO policy", "Expense reports", "Vendor price list"];
@@ -83,9 +84,9 @@ export default function Home() {
           <p className="portal-sidebar-label">Departments</p>
           <nav className="portal-departments" aria-label="Departments">
             {departments.map((department) => (
-              <Link className="portal-department" href={department.href} key={department.name}>
+              <Link className="portal-department" href={department.href} key={department.name} target={department.external ? "_blank" : undefined} rel={department.external ? "noreferrer" : undefined}>
                 <span className={`portal-department-icon ${department.tone}`} aria-hidden="true">{department.icon}</span>
-                <span><strong>{department.name}</strong><small>{department.description}</small></span>
+                <span><strong>{department.name}{department.external ? <span className="external-mark" aria-label="opens in a new tab">↗</span> : null}</strong><small>{department.description}</small></span>
               </Link>
             ))}
           </nav>

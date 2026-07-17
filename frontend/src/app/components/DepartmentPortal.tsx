@@ -17,6 +17,7 @@ const navigation = [
   { name: "PreSales", href: "/presales", icon: "💡", tone: "presales", description: "Solutions and technical sales" },
   { name: "Sales", href: "/sales", icon: "📈", tone: "sales", description: "Customers and revenue" },
   { name: "Operations", href: "/operations", icon: "⚙️", tone: "ops", description: "Systems and operations" },
+  { name: "Scanner", href: "http://192.168.1.226:5173/", icon: "📦", tone: "scanner", description: "Inventory and barcode scanning", external: true },
 ];
 
 export default function DepartmentPortal({ data }: { data: PortalData }) {
@@ -36,9 +37,9 @@ export default function DepartmentPortal({ data }: { data: PortalData }) {
             {navigation.map((item) => {
               const active = item.name === data.name;
               return (
-                <Link className={`portal-department ${active ? "is-active" : ""}`} href={item.href} key={item.name} aria-current={active ? "page" : undefined}>
+                <Link className={`portal-department ${active ? "is-active" : ""}`} href={item.href} key={item.name} aria-current={active ? "page" : undefined} target={item.external ? "_blank" : undefined} rel={item.external ? "noreferrer" : undefined}>
                   <span className={`portal-department-icon ${item.tone}`} aria-hidden="true">{item.icon}</span>
-                  <span><strong>{item.name}</strong><small>{item.description}</small></span>
+                  <span><strong>{item.name}{item.external ? <span className="external-mark" aria-label="opens in a new tab">↗</span> : null}</strong><small>{item.description}</small></span>
                 </Link>
               );
             })}
