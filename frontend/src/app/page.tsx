@@ -9,6 +9,7 @@ import { recordAnalytics } from "./lib/analytics";
 
 type SearchResult = { title: string; url: string; content: string; engine: string | null };
 type SearchResponse = { query: string; results: SearchResult[]; suggestions: string[] };
+type LinkHealth = { name: string; available: boolean };
 
 const departments = [
   { name: "HR", href: "https://netorgft13495013.sharepoint.com/sites/MICASHR", icon: "HR", tone: "hr", description: "Department SharePoint" },
@@ -23,6 +24,7 @@ const suggestions = ["800G deployment guide", "Transceiver comparison", "PTO pol
 export default function Home() {
   const [searchMode, setSearchMode] = useState<"web" | "microsoft">("web");
   const [connected, setConnected] = useState(false);
+  const [linkHealth, setLinkHealth] = useState<LinkHealth[]>([]);
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<SearchResult[]>([]);
   const [searchedQuery, setSearchedQuery] = useState("");
@@ -38,6 +40,10 @@ export default function Home() {
       setConnected(false);
       recordAnalytics("page_unavailable");
     });
+    fetch("/api/analytics/summary?days=1")
+      .then((response) => response.ok ? response.json() : Promise.reject())
+      .then((payload) => setLinkHealth(Array.isArray(payload.link_health) ? payload.link_health : []))
+      .catch(() => setLinkHealth([]));
     const focusSearch = (event: KeyboardEvent) => {
       if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
         event.preventDefault();
@@ -96,7 +102,12 @@ export default function Home() {
               </Link>
             ))}
           </nav>
-          <div className="portal-sidebar-footer"><p><span>Search provider</span><strong>● SearXNG</strong></p><p><span>Departments</span><strong>4 connected</strong></p></div>
+          <section className="portal-system-status" aria-label="System status">
+            <header><span>System status</span><a href="/api/analytics/summary" target="_blank" rel="noreferrer">Details</a></header>
+            <p><span><i className={connected ? "is-online" : ""} />Portal</span><strong>{connected ? "Operational" : "Checking"}</strong></p>
+            <p><span><i className={connected ? "is-online" : ""} />Web search</span><strong>{connected ? "Available" : "Checking"}</strong></p>
+            <p><span><i className={linkHealth.length > 0 && linkHealth.every((item) => item.available) ? "is-online" : ""} />Connected tools</span><strong>{linkHealth.length ? `${linkHealth.filter((item) => item.available).length}/${linkHealth.length}` : "Checking"}</strong></p>
+          </section>
         </aside>
 
         <section className="portal-content">
@@ -119,9 +130,14 @@ export default function Home() {
             <p className="portal-powered">Private metasearch powered by SearXNG</p>
 
             {!searchedQuery ? (
-              <div className="portal-tags" aria-label="Suggested searches">
+              <><div className="portal-tags" aria-label="Suggested searches">
                 {suggestions.map((suggestion) => <button type="button" onClick={() => void runSearch(suggestion)} key={suggestion}>{suggestion}</button>)}
               </div>
+              <nav className="portal-tools" aria-label="Portal tools">
+                <button type="button" onClick={() => window.dispatchEvent(new Event("micas:open-wiki"))}><span aria-hidden="true">AI</span><strong>MICAS Wiki</strong><small>Ask about internal documentation</small></button>
+                <button type="button" onClick={() => window.dispatchEvent(new Event("micas:open-org-chart"))}><span aria-hidden="true">OC</span><strong>Organization chart</strong><small>View teams and reporting lines</small></button>
+                <a href="http://192.168.1.185:3000/" target="_blank" rel="noreferrer" onClick={() => recordAnalytics("department_open", "Scan Station")}><span aria-hidden="true">SS</span><strong>Scan Station</strong><small>Open equipment capture tool</small></a>
+              </nav></>
             ) : null}
           </div>
 
@@ -148,7 +164,7 @@ export default function Home() {
           </>}
         </section>
       </div>
-      <OrgChartPopup />
+      <OrgChartPopup showLauncher={false} />
       <MicasWikiLauncher />
     </main>
   );

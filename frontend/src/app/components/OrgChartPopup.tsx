@@ -2,8 +2,14 @@
 
 import { useEffect, useState } from "react";
 
-export default function OrgChartPopup() {
+export default function OrgChartPopup({ showLauncher = true }: { showLauncher?: boolean }) {
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    const openFromPortal = () => setOpen(true);
+    window.addEventListener("micas:open-org-chart", openFromPortal);
+    return () => window.removeEventListener("micas:open-org-chart", openFromPortal);
+  }, []);
 
   useEffect(() => {
     if (!open) return;
@@ -24,7 +30,7 @@ export default function OrgChartPopup() {
 
   return (
     <>
-      <button
+      {showLauncher ? <button
         className="org-chart-launcher"
         type="button"
         onClick={() => setOpen(true)}
@@ -33,7 +39,7 @@ export default function OrgChartPopup() {
       >
         <span aria-hidden="true">👥</span>
         <strong>Org Chart</strong>
-      </button>
+      </button> : null}
 
       {open ? (
         <div className="org-chart-backdrop" role="presentation" onMouseDown={() => setOpen(false)}>

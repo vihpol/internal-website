@@ -8,11 +8,16 @@ export default function MicasWikiLauncher() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
+    const openFromPortal = () => setOpen(true);
     const closeOnEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape") setOpen(false);
     };
     window.addEventListener("keydown", closeOnEscape);
-    return () => window.removeEventListener("keydown", closeOnEscape);
+    window.addEventListener("micas:open-wiki", openFromPortal);
+    return () => {
+      window.removeEventListener("keydown", closeOnEscape);
+      window.removeEventListener("micas:open-wiki", openFromPortal);
+    };
   }, []);
 
   return (
