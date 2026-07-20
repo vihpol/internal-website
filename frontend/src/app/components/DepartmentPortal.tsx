@@ -18,7 +18,6 @@ const navigation = [
   { name: "PreSales", href: "/presales", icon: "💡", tone: "presales", description: "Solutions and technical sales" },
   { name: "Sales", href: "/sales", icon: "📈", tone: "sales", description: "Customers and revenue" },
   { name: "Operations", href: "/operations", icon: "⚙️", tone: "ops", description: "Systems and operations" },
-  { name: "Scanner", href: "http://192.168.1.185:5173/", icon: "📦", tone: "scanner", description: "Inventory and barcode scanning", external: true },
   { name: "Scan Station", href: "http://192.168.1.185:3000/", icon: "📷", tone: "scanstation", description: "Capture switch labels", external: true },
 ];
 
