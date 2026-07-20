@@ -18,11 +18,11 @@ export type PortalData = {
 };
 
 const navigation = [
-  { name: "HR", href: "https://netorgft13495013.sharepoint.com/sites/MICASHR", icon: "👥", tone: "hr", description: "Open HR SharePoint" },
-  { name: "Engineering", href: "https://netorgft13495013.sharepoint.com/sites/MICASEngineeringMock", icon: "💡", tone: "presales", description: "Open Engineering SharePoint" },
-  { name: "Sales", href: "https://netorgft13495013.sharepoint.com/sites/MICASSales", icon: "📈", tone: "sales", description: "Open Sales SharePoint" },
-  { name: "Operations", href: "https://netorgft13495013.sharepoint.com/sites/MICASOperations", icon: "⚙️", tone: "ops", description: "Open Operations SharePoint" },
-  { name: "Scan Station", href: "http://192.168.1.185:3000/", icon: "📷", tone: "scanstation", description: "Capture switch labels", external: true },
+  { name: "HR", href: "https://netorgft13495013.sharepoint.com/sites/MICASHR", icon: "HR", tone: "hr", description: "Department SharePoint" },
+  { name: "Engineering", href: "https://netorgft13495013.sharepoint.com/sites/MICASEngineeringMock", icon: "EN", tone: "presales", description: "Department SharePoint" },
+  { name: "Sales", href: "https://netorgft13495013.sharepoint.com/sites/MICASSales", icon: "SA", tone: "sales", description: "Department SharePoint" },
+  { name: "Operations", href: "https://netorgft13495013.sharepoint.com/sites/MICASOperations", icon: "OP", tone: "ops", description: "Department SharePoint" },
+  { name: "Scan Station", href: "http://192.168.1.185:3000/", icon: "SS", tone: "scanstation", description: "Equipment capture tool", external: true },
 ];
 
 export default function DepartmentPortal({ data }: { data: PortalData }) {

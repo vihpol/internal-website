@@ -9,20 +9,14 @@ type SearchResult = { title: string; url: string; content: string; engine: strin
 type SearchResponse = { query: string; results: SearchResult[]; suggestions: string[] };
 
 const departments = [
-  { name: "HR", href: "https://netorgft13495013.sharepoint.com/sites/MICASHR", icon: "👥", tone: "hr", description: "Open HR SharePoint" },
-  { name: "Engineering", href: "https://netorgft13495013.sharepoint.com/sites/MICASEngineeringMock", icon: "💡", tone: "presales", description: "Open Engineering SharePoint" },
-  { name: "Sales", href: "https://netorgft13495013.sharepoint.com/sites/MICASSales", icon: "📈", tone: "sales", description: "Open Sales SharePoint" },
-  { name: "Operations", href: "https://netorgft13495013.sharepoint.com/sites/MICASOperations", icon: "⚙️", tone: "ops", description: "Open Operations SharePoint" },
-  { name: "Scan Station", href: "http://192.168.1.185:3000/", icon: "📷", tone: "scanstation", description: "Capture switch labels", external: true },
+  { name: "HR", href: "https://netorgft13495013.sharepoint.com/sites/MICASHR", icon: "HR", tone: "hr", description: "Department SharePoint" },
+  { name: "Engineering", href: "https://netorgft13495013.sharepoint.com/sites/MICASEngineeringMock", icon: "EN", tone: "presales", description: "Department SharePoint" },
+  { name: "Sales", href: "https://netorgft13495013.sharepoint.com/sites/MICASSales", icon: "SA", tone: "sales", description: "Department SharePoint" },
+  { name: "Operations", href: "https://netorgft13495013.sharepoint.com/sites/MICASOperations", icon: "OP", tone: "ops", description: "Department SharePoint" },
+  { name: "Scan Station", href: "http://192.168.1.185:3000/", icon: "SS", tone: "scanstation", description: "Equipment capture tool", external: true },
 ];
 
 const suggestions = ["800G deployment guide", "Transceiver comparison", "PTO policy", "Expense reports", "Vendor price list"];
-
-const quickAccess = [
-  { icon: "📄", status: "Recent", title: "Fiber Optics Training Deck", meta: "PreSales · updated 2d ago" },
-  { icon: "📦", status: "Popular", title: "MICAS Inventory Tool", meta: "Operations · daily use" },
-  { icon: "🧾", status: "Updated", title: "Q3 Customer Quote Templates", meta: "Sales · updated 1w ago" },
-];
 
 export default function Home() {
   const [connected, setConnected] = useState(false);
@@ -96,7 +90,6 @@ export default function Home() {
         </aside>
 
         <section className="portal-content">
-          <div className="portal-fiber-lines" aria-hidden="true" />
           <div className={`portal-hero ${searchedQuery ? "has-results" : ""}`}>
             <p className="portal-eyebrow"><span />MICAS Web Search</p>
             <h1>What are you looking for?</h1>
@@ -136,11 +129,7 @@ export default function Home() {
                 ))}
               </div>
             </section>
-          ) : (
-            <div className="portal-quick-access" aria-label="Quick access">
-              {quickAccess.map((item) => <article className="portal-quick-card" key={item.title}><div><span className="portal-quick-icon" aria-hidden="true">{item.icon}</span><span className="portal-quick-status">{item.status}</span></div><strong>{item.title}</strong><small>{item.meta}</small></article>)}
-            </div>
-          )}
+          ) : null}
         </section>
       </div>
       <OrgChartPopup />
