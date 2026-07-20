@@ -6,6 +6,7 @@ import {
   PublicClientApplication,
 } from "@azure/msal-browser";
 import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
+import { recordAnalytics } from "../lib/analytics";
 
 type MicrosoftSearchResult = {
   title: string;
@@ -143,6 +144,7 @@ export default function MicrosoftSearch({ onReturnToWeb }: Props) {
     } catch (searchError) {
       setResults([]);
       setError(searchError instanceof Error ? searchError.message : "MICAS document search could not be completed.");
+      recordAnalytics("microsoft_search_failure", "microsoft-graph");
     } finally {
       setLoading(false);
     }

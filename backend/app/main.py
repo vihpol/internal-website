@@ -1,8 +1,10 @@
 import json
 import os
+import sqlite3
 import urllib.error
 import urllib.parse
 import urllib.request
+from datetime import datetime, timedelta, timezone
 from typing import Literal
 
 from fastapi import FastAPI, HTTPException
@@ -59,7 +61,67 @@ class SearchResponse(BaseModel):
     suggestions: list[str]
 
 
+AnalyticsEventName = Literal[
+    "department_open",
+    "web_search_failure",
+    "microsoft_search_failure",
+    "page_available",
+    "page_unavailable",
+    "broken_link_report",
+]
+
+
+class AnalyticsEvent(BaseModel):
+    event: AnalyticsEventName
+    target: str = "portal"
+
+
 app = FastAPI(title="micas-assistops API")
+
+ANALYTICS_DB = os.getenv("ANALYTICS_DB", "/data/analytics.db")
+ANALYTICS_TARGETS = {
+    "portal", "searxng", "microsoft-graph", "HR", "Engineering",
+    "Sales", "Operations", "Scan Station",
+}
+
+
+def _analytics_connection() -> sqlite3.Connection:
+    os.makedirs(os.path.dirname(ANALYTICS_DB), exist_ok=True)
+    connection = sqlite3.connect(ANALYTICS_DB, timeout=5)
+    connection.execute(
+        """CREATE TABLE IF NOT EXISTS analytics_counts (
+            day TEXT NOT NULL,
+            event TEXT NOT NULL,
+            target TEXT NOT NULL,
+            count INTEGER NOT NULL DEFAULT 0,
+            PRIMARY KEY (day, event, target)
+        )"""
+    )
+    return connection
+
+
+def _record_analytics(event: str, target: str) -> None:
+    safe_target = target if target in ANALYTICS_TARGETS else "other"
+    day = datetime.now(timezone.utc).date().isoformat()
+    with _analytics_connection() as connection:
+        connection.execute(
+            """INSERT INTO analytics_counts(day, event, target, count)
+               VALUES (?, ?, ?, 1)
+               ON CONFLICT(day, event, target)
+               DO UPDATE SET count = count + 1""",
+            (day, event, safe_target),
+        )
+
+
+def _check_link(name: str, url: str) -> dict[str, str | bool]:
+    request = urllib.request.Request(url, method="HEAD", headers={"User-Agent": "MICAS-Portal-Health/1.0"})
+    try:
+        with urllib.request.urlopen(request, timeout=5) as response:
+            return {"name": name, "available": response.status < 500}
+    except urllib.error.HTTPError as exc:
+        return {"name": name, "available": exc.code < 500}
+    except (urllib.error.URLError, TimeoutError):
+        return {"name": name, "available": False}
 
 app.add_middleware(
     CORSMiddleware,
@@ -377,6 +439,37 @@ def run_marketing_workflow(request: str) -> AnalyzeResponse:
 @app.get("/health")
 def health() -> dict[str, str]:
     return {"status": "ok"}
+
+
+@app.post("/analytics/event", status_code=204)
+def analytics_event(payload: AnalyticsEvent) -> None:
+    _record_analytics(payload.event, payload.target)
+
+
+@app.get("/analytics/summary")
+def analytics_summary(days: int = 30) -> dict:
+    window = min(max(days, 1), 90)
+    since = (datetime.now(timezone.utc).date() - timedelta(days=window - 1)).isoformat()
+    with _analytics_connection() as connection:
+        rows = connection.execute(
+            """SELECT event, target, SUM(count) AS total
+               FROM analytics_counts WHERE day >= ?
+               GROUP BY event, target ORDER BY total DESC""",
+            (since,),
+        ).fetchall()
+    links = [
+        _check_link("HR", "https://netorgft13495013.sharepoint.com/sites/MICASHR"),
+        _check_link("Engineering", "https://netorgft13495013.sharepoint.com/sites/MICASEngineeringMock"),
+        _check_link("Sales", "https://netorgft13495013.sharepoint.com/sites/MICASSales"),
+        _check_link("Operations", "https://netorgft13495013.sharepoint.com/sites/MICASOperations"),
+        _check_link("Scan Station", "http://192.168.1.185:3000/"),
+    ]
+    return {
+        "period_days": window,
+        "counts": [{"event": row[0], "target": row[1], "count": row[2]} for row in rows],
+        "link_health": links,
+        "privacy": "Anonymous aggregate counts only; no identities, queries, IP addresses, or document names are stored.",
+    }
 
 
 @app.get("/search", response_model=SearchResponse)

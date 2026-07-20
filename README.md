@@ -54,3 +54,7 @@ curl "http://localhost/api/search?q=MICAS%20Networks"
 ```
 
 The existing `/analyze` and `/gemini-answer` backend endpoints remain available but are not used by the search page.
+
+## Privacy-conscious analytics
+
+The portal stores daily aggregate counts for department link usage, search failures, and portal availability. `/analytics/summary` also checks whether each configured department destination is reachable. It does not store employee identities, IP addresses, search queries, document names, or browser fingerprints.

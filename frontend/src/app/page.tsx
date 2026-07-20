@@ -5,6 +5,7 @@ import { FormEvent, useEffect, useRef, useState } from "react";
 import OrgChartPopup from "./components/OrgChartPopup";
 import MicasWikiLauncher from "./components/MicasWikiLauncher";
 import MicrosoftSearch from "./components/MicrosoftSearch";
+import { recordAnalytics } from "./lib/analytics";
 
 type SearchResult = { title: string; url: string; content: string; engine: string | null };
 type SearchResponse = { query: string; results: SearchResult[]; suggestions: string[] };
@@ -30,7 +31,13 @@ export default function Home() {
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    fetch("/api/health").then((response) => setConnected(response.ok)).catch(() => setConnected(false));
+    fetch("/api/health").then((response) => {
+      setConnected(response.ok);
+      recordAnalytics(response.ok ? "page_available" : "page_unavailable");
+    }).catch(() => {
+      setConnected(false);
+      recordAnalytics("page_unavailable");
+    });
     const focusSearch = (event: KeyboardEvent) => {
       if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
         event.preventDefault();
@@ -56,6 +63,7 @@ export default function Home() {
     } catch (searchError) {
       setResults([]);
       setError(searchError instanceof Error ? searchError.message : "Search could not be completed.");
+      recordAnalytics("web_search_failure", "searxng");
     } finally {
       setLoading(false);
     }
@@ -82,7 +90,7 @@ export default function Home() {
           <p className="portal-sidebar-label">Departments</p>
           <nav className="portal-departments" aria-label="Departments">
             {departments.map((department) => (
-              <Link className="portal-department" href={department.href} key={department.name} target={department.external ? "_blank" : undefined} rel={department.external ? "noreferrer" : undefined}>
+              <Link className="portal-department" href={department.href} key={department.name} target={department.external ? "_blank" : undefined} rel={department.external ? "noreferrer" : undefined} onClick={() => recordAnalytics("department_open", department.name)}>
                 <span className={`portal-department-icon ${department.tone}`} aria-hidden="true">{department.icon}</span>
                 <span><strong>{department.name}{department.external ? <span className="external-mark" aria-label="opens in a new tab">↗</span> : null}</strong><small>{department.description}</small></span>
               </Link>
