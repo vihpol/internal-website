@@ -30,6 +30,8 @@ services:
       context: ./frontend
       args:
         BACKEND_URL: http://backend:8000
+        NEXT_PUBLIC_MICROSOFT_TENANT_ID: ${MICROSOFT_TENANT_ID:-cd3cf671-aff3-46a2-8cf4-3fc771ae270e}
+        NEXT_PUBLIC_MICROSOFT_CLIENT_ID: ${MICROSOFT_CLIENT_ID:-}
     restart: unless-stopped
     environment:
       BACKEND_URL: http://backend:8000

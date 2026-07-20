@@ -4,6 +4,7 @@ import Link from "next/link";
 import { FormEvent, useEffect, useRef, useState } from "react";
 import OrgChartPopup from "./components/OrgChartPopup";
 import MicasWikiLauncher from "./components/MicasWikiLauncher";
+import MicrosoftSearch from "./components/MicrosoftSearch";
 
 type SearchResult = { title: string; url: string; content: string; engine: string | null };
 type SearchResponse = { query: string; results: SearchResult[]; suggestions: string[] };
@@ -19,6 +20,7 @@ const departments = [
 const suggestions = ["800G deployment guide", "Transceiver comparison", "PTO policy", "Expense reports", "Vendor price list"];
 
 export default function Home() {
+  const [searchMode, setSearchMode] = useState<"web" | "microsoft">("web");
   const [connected, setConnected] = useState(false);
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<SearchResult[]>([]);
@@ -90,6 +92,11 @@ export default function Home() {
         </aside>
 
         <section className="portal-content">
+          <div className="search-mode-switch" role="tablist" aria-label="Search source">
+            <button type="button" role="tab" aria-selected={searchMode === "web"} className={searchMode === "web" ? "is-active" : ""} onClick={() => setSearchMode("web")}>Web</button>
+            <button type="button" role="tab" aria-selected={searchMode === "microsoft"} className={searchMode === "microsoft" ? "is-active" : ""} onClick={() => setSearchMode("microsoft")}>MICAS documents</button>
+          </div>
+          {searchMode === "microsoft" ? <MicrosoftSearch onReturnToWeb={() => setSearchMode("web")} /> : <>
           <div className={`portal-hero ${searchedQuery ? "has-results" : ""}`}>
             <p className="portal-eyebrow"><span />MICAS Web Search</p>
             <h1>What are you looking for?</h1>
@@ -130,6 +137,7 @@ export default function Home() {
               </div>
             </section>
           ) : null}
+          </>}
         </section>
       </div>
       <OrgChartPopup />
