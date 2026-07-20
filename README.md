@@ -37,7 +37,9 @@ SearXNG is available only to the other containers and is not published directly 
 
 ## Microsoft 365 document search
 
-Register a single-tenant **Single-page application** in Microsoft Entra ID, then add `http://192.168.1.185` as a Single-page application redirect URI. Add these delegated Microsoft Graph permissions:
+Give the portal an internal HTTPS address (for example, `https://portal.micasnetworks.com`). Microsoft Entra does not accept a plain-HTTP production redirect URI except on `localhost`.
+
+Register a single-tenant **Single-page application** in Microsoft Entra ID, then add the portal's exact HTTPS origin as a Single-page application redirect URI. Add these delegated Microsoft Graph permissions:
 
 - `User.Read`
 - `Files.Read.All`
