@@ -9,10 +9,10 @@ type SearchResult = { title: string; url: string; content: string; engine: strin
 type SearchResponse = { query: string; results: SearchResult[]; suggestions: string[] };
 
 const departments = [
-  { name: "HR", href: "https://netorgft13495013.sharepoint.com/sites/micas-engineering", icon: "👥", tone: "hr", description: "Open department SharePoint" },
+  { name: "HR", href: "/hr", icon: "👥", tone: "hr", description: "HR SharePoint site" },
   { name: "Engineering", href: "https://netorgft13495013.sharepoint.com/sites/micas-engineering", icon: "💡", tone: "presales", description: "Open engineering SharePoint" },
-  { name: "Sales", href: "https://netorgft13495013.sharepoint.com/sites/micas-engineering", icon: "📈", tone: "sales", description: "Open department SharePoint" },
-  { name: "Operations", href: "https://netorgft13495013.sharepoint.com/sites/micas-engineering", icon: "⚙️", tone: "ops", description: "Open department SharePoint" },
+  { name: "Sales", href: "/sales", icon: "📈", tone: "sales", description: "Sales SharePoint site" },
+  { name: "Operations", href: "/operations", icon: "⚙️", tone: "ops", description: "Operations SharePoint site" },
   { name: "Scan Station", href: "http://192.168.1.185:3000/", icon: "📷", tone: "scanstation", description: "Capture switch labels", external: true },
 ];
 
