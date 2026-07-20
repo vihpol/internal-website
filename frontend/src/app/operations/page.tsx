@@ -20,5 +20,16 @@ export default function OperationsPage() {
       { title: "ERP maintenance scheduled Saturday", meta: "IT Operations · Yesterday" },
       { title: "Equipment return process updated", meta: "Business Operations · July 15" },
     ],
+    libraries: [
+      { icon: "📁", title: "Standard Procedures", description: "Approved operating procedures", items: 28 },
+      { icon: "📁", title: "Inventory & Assets", description: "Inventory records and asset documents", items: 19 },
+      { icon: "📁", title: "Shipping & Logistics", description: "Shipping, receiving, and returns", items: 14 },
+    ],
+    documents: [
+      { type: "Word", title: "Warehouse Receiving Procedure", modified: "Today", owner: "Facilities" },
+      { type: "Excel", title: "Network Equipment Inventory", modified: "Today", owner: "Operations" },
+      { type: "PDF", title: "Equipment Return Process", modified: "Jul 15", owner: "Business Operations" },
+      { type: "PowerPoint", title: "Operations Safety Training", modified: "Jul 9", owner: "Facilities" },
+    ],
   }} />;
 }

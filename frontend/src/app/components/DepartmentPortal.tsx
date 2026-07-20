@@ -12,6 +12,8 @@ export type PortalData = {
   highlights: { label: string; value: string; note: string }[];
   tools: { icon: string; title: string; description: string }[];
   updates: { title: string; meta: string }[];
+  libraries: { icon: string; title: string; description: string; items: number }[];
+  documents: { type: "Word" | "Excel" | "PowerPoint" | "PDF"; title: string; modified: string; owner: string }[];
 };
 
 const navigation = [
@@ -60,36 +62,37 @@ export default function DepartmentPortal({ data }: { data: PortalData }) {
             <span className="department-page-badge">{data.name}</span>
           </header>
 
-          <section className="department-highlights" aria-label={`${data.name} highlights`}>
-            {data.highlights.map((item) => (
-              <article key={item.label}>
-                <p>{item.label}</p><strong>{item.value}</strong><small>{item.note}</small>
-              </article>
-            ))}
+          <section className="sharepoint-toolbar" aria-label="Document library controls">
+            <div><span className="sharepoint-grid-mark" aria-hidden="true">▦</span><div><strong>{data.name} SharePoint</strong><small>Department document center</small></div></div>
+            <span className="sharepoint-access">🔒 {data.name} access</span>
           </section>
 
-          <div className="department-grid">
-            <section>
-              <div className="department-section-heading"><span /> <h2>{data.name} tools</h2></div>
-              <div className="department-tools">
-                {data.tools.map((tool) => (
-                  <button key={tool.title} type="button">
-                    <span aria-hidden="true">{tool.icon}</span>
-                    <span><strong>{tool.title}</strong><small>{tool.description}</small></span>
-                  </button>
-                ))}
-              </div>
-            </section>
+          <section className="sharepoint-libraries" aria-label={`${data.name} document libraries`}>
+            <div className="department-section-heading"><span /> <h2>Document libraries</h2></div>
+            <div className="sharepoint-library-grid">
+              {data.libraries.map((library) => (
+                <button type="button" key={library.title}>
+                  <span className="sharepoint-folder" aria-hidden="true">{library.icon}</span>
+                  <span><strong>{library.title}</strong><small>{library.description}</small><em>{library.items} items</em></span>
+                  <b aria-hidden="true">›</b>
+                </button>
+              ))}
+            </div>
+          </section>
 
-            <section>
-              <div className="department-section-heading"><span /> <h2>Latest updates</h2></div>
-              <div className="department-updates">
-                {data.updates.map((update) => (
-                  <article key={update.title}><strong>{update.title}</strong><small>{update.meta}</small></article>
-                ))}
-              </div>
-            </section>
-          </div>
+          <section className="sharepoint-recent" aria-label="Recent documents">
+            <div className="sharepoint-list-heading"><div className="department-section-heading"><span /> <h2>Recent documents</h2></div><button type="button">View all</button></div>
+            <div className="sharepoint-table" role="table" aria-label={`${data.name} recent documents`}>
+              <div className="sharepoint-row sharepoint-row-head" role="row"><span>Name</span><span>Modified</span><span>Owner</span></div>
+              {data.documents.map((document) => (
+                <button className="sharepoint-row" type="button" role="row" key={document.title}>
+                  <span className="sharepoint-file"><i className={`file-${document.type.toLowerCase()}`}>{document.type.charAt(0)}</i><span><strong>{document.title}</strong><small>{document.type} document</small></span></span>
+                  <span>{document.modified}</span><span>{document.owner}</span>
+                </button>
+              ))}
+            </div>
+            <p className="sharepoint-notice">🔐 Mock content only. A future Microsoft 365 connection will use each employee&apos;s existing SharePoint permissions.</p>
+          </section>
         </section>
       </div>
       <OrgChartPopup />

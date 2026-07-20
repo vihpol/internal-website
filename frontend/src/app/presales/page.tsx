@@ -20,5 +20,16 @@ export default function PreSalesPage() {
       { title: "SONiC compatibility matrix updated", meta: "Product Engineering · Yesterday" },
       { title: "Customer demonstration checklist v2", meta: "Demo Center · July 14" },
     ],
+    libraries: [
+      { icon: "📁", title: "Solution Designs", description: "Validated architectures and design guides", items: 26 },
+      { icon: "📁", title: "RFP Responses", description: "Approved technical response library", items: 34 },
+      { icon: "📁", title: "Demos & Labs", description: "Demo scripts, labs, and validation plans", items: 17 },
+    ],
+    documents: [
+      { type: "PDF", title: "800G Reference Architecture", modified: "Today", owner: "Solutions Engineering" },
+      { type: "Excel", title: "SONiC Compatibility Matrix", modified: "Yesterday", owner: "Product Engineering" },
+      { type: "PowerPoint", title: "Data Center Fabric Demo", modified: "Jul 17", owner: "Demo Center" },
+      { type: "Word", title: "RFP Technical Response Template", modified: "Jul 11", owner: "PreSales" },
+    ],
   }} />;
 }

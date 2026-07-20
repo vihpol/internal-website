@@ -20,5 +20,16 @@ export default function SalesPage() {
       { title: "Enterprise pitch deck refreshed", meta: "Sales Enablement · Yesterday" },
       { title: "Partner registration process updated", meta: "Channel Sales · July 15" },
     ],
+    libraries: [
+      { icon: "📁", title: "Sales Enablement", description: "Pitch decks, battlecards, and playbooks", items: 31 },
+      { icon: "📁", title: "Pricing & Quotes", description: "Current price lists and quote templates", items: 15 },
+      { icon: "📁", title: "Customer Resources", description: "Approved case studies and references", items: 22 },
+    ],
+    documents: [
+      { type: "Excel", title: "Q3 Approved Price List", modified: "Today", owner: "Revenue Operations" },
+      { type: "PowerPoint", title: "MICAS Enterprise Pitch Deck", modified: "Yesterday", owner: "Sales Enablement" },
+      { type: "Word", title: "Customer Quote Template", modified: "Jul 16", owner: "Deal Desk" },
+      { type: "PDF", title: "Customer Success Stories", modified: "Jul 10", owner: "Marketing" },
+    ],
   }} />;
 }
