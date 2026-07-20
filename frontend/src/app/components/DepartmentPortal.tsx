@@ -18,10 +18,10 @@ export type PortalData = {
 };
 
 const navigation = [
-  { name: "HR", href: "/hr", icon: "👥", tone: "hr", description: "HR SharePoint site" },
+  { name: "HR", href: "https://netorgft13495013.sharepoint.com/sites/MICASHR", icon: "👥", tone: "hr", description: "Open HR SharePoint" },
   { name: "Engineering", href: "https://netorgft13495013.sharepoint.com/sites/micas-engineering", icon: "💡", tone: "presales", description: "Open engineering SharePoint" },
-  { name: "Sales", href: "/sales", icon: "📈", tone: "sales", description: "Sales SharePoint site" },
-  { name: "Operations", href: "/operations", icon: "⚙️", tone: "ops", description: "Operations SharePoint site" },
+  { name: "Sales", href: "https://netorgft13495013.sharepoint.com/sites/MICASSales", icon: "📈", tone: "sales", description: "Open Sales SharePoint" },
+  { name: "Operations", href: "https://netorgft13495013.sharepoint.com/sites/MICASOperations", icon: "⚙️", tone: "ops", description: "Open Operations SharePoint" },
   { name: "Scan Station", href: "http://192.168.1.185:3000/", icon: "📷", tone: "scanstation", description: "Capture switch labels", external: true },
 ];
 
