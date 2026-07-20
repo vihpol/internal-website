@@ -18,7 +18,7 @@ export type PortalData = {
 
 const navigation = [
   { name: "HR", href: "https://netorgft13495013.sharepoint.com/sites/micas-engineering", icon: "👥", tone: "hr", description: "Open department SharePoint" },
-  { name: "PreSales", href: "https://netorgft13495013.sharepoint.com/sites/micas-engineering", icon: "💡", tone: "presales", description: "Open department SharePoint" },
+  { name: "Engineering", href: "https://netorgft13495013.sharepoint.com/sites/micas-engineering", icon: "💡", tone: "presales", description: "Open engineering SharePoint" },
   { name: "Sales", href: "https://netorgft13495013.sharepoint.com/sites/micas-engineering", icon: "📈", tone: "sales", description: "Open department SharePoint" },
   { name: "Operations", href: "https://netorgft13495013.sharepoint.com/sites/micas-engineering", icon: "⚙️", tone: "ops", description: "Open department SharePoint" },
   { name: "Scan Station", href: "http://192.168.1.185:3000/", icon: "📷", tone: "scanstation", description: "Capture switch labels", external: true },
