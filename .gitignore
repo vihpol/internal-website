@@ -7,3 +7,4 @@ node_modules/
 out/
 dist/
 .env
+frontend/public/micas-org-chart.png

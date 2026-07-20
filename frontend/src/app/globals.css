@@ -146,6 +146,21 @@ input.gsc-input { min-height: 54px !important; padding: 0 20px !important; backg
 .searx-message p { margin: 6px 0 0; color: var(--muted); font-size: 13px; }
 .searx-message.is-error { border-color: #edc7c7; background: #fff8f8; }
 
+.org-chart-launcher { position: fixed; z-index: 30; right: 0; top: 54%; display: flex; align-items: center; gap: 8px; padding: 11px 13px 11px 12px; border: 1px solid rgba(94,234,212,.4); border-right: 0; border-radius: 14px 0 0 14px; background: var(--navy-900); color: white; cursor: pointer; box-shadow: 0 10px 28px rgba(8,27,44,.24); transform: translateY(-50%); transition: padding .18s ease, background .18s ease; }
+.org-chart-launcher:hover { padding-right: 18px; background: #155173; }
+.org-chart-launcher > span { font-size: 18px; }
+.org-chart-launcher > strong { font: 600 10px "IBM Plex Mono", monospace; letter-spacing: .4px; white-space: nowrap; }
+.org-chart-backdrop { position: fixed; z-index: 100; inset: 0; display: grid; place-items: center; padding: 24px; background: rgba(4,16,27,.72); backdrop-filter: blur(4px); }
+.org-chart-dialog { display: flex; width: min(94vw, 1720px); max-height: 90vh; flex-direction: column; overflow: hidden; border: 1px solid rgba(94,234,212,.25); border-radius: 18px; background: #f7fafb; box-shadow: 0 30px 90px rgba(0,0,0,.38); }
+.org-chart-dialog > header { display: flex; flex: 0 0 auto; align-items: center; justify-content: space-between; gap: 20px; padding: 18px 22px; background: linear-gradient(110deg, var(--navy-950), var(--navy-800)); color: white; }
+.org-chart-dialog > header p { margin: 0 0 3px; color: var(--teal-400); font: 500 9.5px "IBM Plex Mono", monospace; letter-spacing: 2px; text-transform: uppercase; }
+.org-chart-dialog > header h2 { margin: 0; font-size: 20px; }
+.org-chart-dialog > header button { display: grid; width: 38px; height: 38px; place-items: center; border: 1px solid rgba(255,255,255,.2); border-radius: 50%; background: rgba(255,255,255,.08); color: white; cursor: pointer; font-size: 25px; line-height: 1; }
+.org-chart-dialog > header button:hover { background: rgba(255,255,255,.16); }
+.org-chart-canvas { flex: 1 1 auto; overflow: auto; padding: 28px; background: white; }
+.org-chart-canvas img { display: block; width: max(100%, 1500px); height: auto; }
+.org-chart-dialog > footer { flex: 0 0 auto; padding: 10px 22px; border-top: 1px solid var(--line); color: var(--soft); font: 400 10px "IBM Plex Mono", monospace; text-align: center; }
+
 .department-search-link { padding: 7px 14px; border: 1px solid rgba(45,212,191,.35); border-radius: 999px; background: rgba(45,212,191,.1); color: var(--teal-400); font: 500 11px "IBM Plex Mono", monospace; text-decoration: none; }
 .department-back-home { display: block; margin: 28px 6px 0; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.07); color: #7f97a8; font: 400 11px "IBM Plex Mono", monospace; text-decoration: none; }
 .department-back-home:hover, .department-search-link:hover { color: white; }
@@ -209,4 +224,9 @@ input.gsc-input { min-height: 54px !important; padding: 0 20px !important; backg
   .searx-kbd { display: none; }
   .searx-search-form button { min-width: 74px; padding-inline: 10px; }
   .searx-results-heading { align-items: flex-start; flex-direction: column; gap: 7px; }
+  .org-chart-launcher > strong { display: none; }
+  .org-chart-launcher { padding: 12px; }
+  .org-chart-backdrop { padding: 10px; }
+  .org-chart-dialog { width: 100%; max-height: 94vh; }
+  .org-chart-canvas { padding: 15px; }
 }

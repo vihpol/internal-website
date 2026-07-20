@@ -1,4 +1,5 @@
 import Link from "next/link";
+import OrgChartPopup from "./OrgChartPopup";
 
 export type PortalData = {
   name: string;
@@ -91,6 +92,7 @@ export default function DepartmentPortal({ data }: { data: PortalData }) {
           </div>
         </section>
       </div>
+      <OrgChartPopup />
     </main>
   );
 }
