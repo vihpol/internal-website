@@ -10,7 +10,7 @@ type SearchResponse = { query: string; results: SearchResult[]; suggestions: str
 
 const departments = [
   { name: "HR", href: "https://netorgft13495013.sharepoint.com/sites/MICASHR", icon: "👥", tone: "hr", description: "Open HR SharePoint" },
-  { name: "Engineering", href: "https://netorgft13495013.sharepoint.com/sites/micas-engineering", icon: "💡", tone: "presales", description: "Open engineering SharePoint" },
+  { name: "Engineering", href: "https://netorgft13495013.sharepoint.com/sites/MICASEngineeringMock", icon: "💡", tone: "presales", description: "Open Engineering SharePoint" },
   { name: "Sales", href: "https://netorgft13495013.sharepoint.com/sites/MICASSales", icon: "📈", tone: "sales", description: "Open Sales SharePoint" },
   { name: "Operations", href: "https://netorgft13495013.sharepoint.com/sites/MICASOperations", icon: "⚙️", tone: "ops", description: "Open Operations SharePoint" },
   { name: "Scan Station", href: "http://192.168.1.185:3000/", icon: "📷", tone: "scanstation", description: "Capture switch labels", external: true },
