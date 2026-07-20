@@ -1,5 +1,6 @@
 import Link from "next/link";
 import OrgChartPopup from "./OrgChartPopup";
+import MicasWikiLauncher from "./MicasWikiLauncher";
 
 export type PortalData = {
   name: string;
@@ -92,6 +93,7 @@ export default function DepartmentPortal({ data }: { data: PortalData }) {
         </section>
       </div>
       <OrgChartPopup />
+      <MicasWikiLauncher />
     </main>
   );
 }

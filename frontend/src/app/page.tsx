@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { FormEvent, useEffect, useRef, useState } from "react";
 import OrgChartPopup from "./components/OrgChartPopup";
+import MicasWikiLauncher from "./components/MicasWikiLauncher";
 
 type SearchResult = { title: string; url: string; content: string; engine: string | null };
 type SearchResponse = { query: string; results: SearchResult[]; suggestions: string[] };
@@ -143,6 +144,7 @@ export default function Home() {
         </section>
       </div>
       <OrgChartPopup />
+      <MicasWikiLauncher />
     </main>
   );
 }
