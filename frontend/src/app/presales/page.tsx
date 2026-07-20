@@ -21,12 +21,12 @@ export default function PreSalesPage() {
       { title: "Customer demonstration checklist v2", meta: "Demo Center · July 14" },
     ],
     libraries: [
-      { icon: "📁", title: "Solution Designs", description: "Validated architectures and design guides", items: 26 },
-      { icon: "📁", title: "RFP Responses", description: "Approved technical response library", items: 34 },
-      { icon: "📁", title: "Demos & Labs", description: "Demo scripts, labs, and validation plans", items: 17 },
+      { icon: "📁", title: "PLM & PreSales", description: "Customer and presales workspaces", items: 36, href: "https://netorgft13495013.sharepoint.com/sites/micas-engineering/Shared%20Documents/PLM%20%26%20Presales" },
+      { icon: "📁", title: "Product Documents", description: "Engineering product documents", items: 10, href: "https://netorgft13495013.sharepoint.com/sites/micas-engineering/Shared%20Documents/Product%20Documents-ES" },
+      { icon: "📁", title: "PoC", description: "Proof-of-concept resources", items: 1, href: "https://netorgft13495013.sharepoint.com/sites/micas-engineering/Shared%20Documents/PoC" },
     ],
     documents: [
-      { type: "PDF", title: "800G Reference Architecture", modified: "Today", owner: "Solutions Engineering" },
+      { type: "Excel", title: "Cloudflare Network Hardware Specification", modified: "Dec 17", owner: "PLM & PreSales", href: "https://netorgft13495013.sharepoint.com/sites/micas-engineering/_layouts/15/Doc.aspx?sourcedoc=%7B83AC6D7A-312B-4DB4-95E2-E34A1AF4969F%7D&file=CF_Network_Hardware_Spec_11_19_2025%20-%20Micasfeedback_1210update.xlsx&action=default&mobileredirect=true" },
       { type: "Excel", title: "SONiC Compatibility Matrix", modified: "Yesterday", owner: "Product Engineering" },
       { type: "PowerPoint", title: "Data Center Fabric Demo", modified: "Jul 17", owner: "Demo Center" },
       { type: "Word", title: "RFP Technical Response Template", modified: "Jul 11", owner: "PreSales" },

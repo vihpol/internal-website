@@ -21,12 +21,12 @@ export default function SalesPage() {
       { title: "Partner registration process updated", meta: "Channel Sales · July 15" },
     ],
     libraries: [
-      { icon: "📁", title: "Sales Enablement", description: "Pitch decks, battlecards, and playbooks", items: 31 },
-      { icon: "📁", title: "Pricing & Quotes", description: "Current price lists and quote templates", items: 15 },
-      { icon: "📁", title: "Customer Resources", description: "Approved case studies and references", items: 22 },
+      { icon: "📁", title: "Customer Visit", description: "Customer visit materials", items: 1, href: "https://netorgft13495013.sharepoint.com/sites/micas-engineering/Shared%20Documents/Customer%20Visit" },
+      { icon: "📁", title: "From Customer", description: "Customer-provided engineering files", items: 1, href: "https://netorgft13495013.sharepoint.com/sites/micas-engineering/Shared%20Documents/From%20Customer" },
+      { icon: "📁", title: "PLM & PreSales", description: "Customer-specific workspaces", items: 36, href: "https://netorgft13495013.sharepoint.com/sites/micas-engineering/Shared%20Documents/PLM%20%26%20Presales" },
     ],
     documents: [
-      { type: "Excel", title: "Q3 Approved Price List", modified: "Today", owner: "Revenue Operations" },
+      { type: "PowerPoint", title: "Introduction to Nokia", modified: "Aug 15", owner: "Micas Engineering", href: "https://netorgft13495013.sharepoint.com/sites/micas-engineering/_layouts/15/Doc.aspx?sourcedoc=%7B8C1CD6F9-A06B-4D2A-890F-7313CF03DCF3%7D&file=Introduction%20to%20Nokia.pptx&action=default&mobileredirect=true" },
       { type: "PowerPoint", title: "MICAS Enterprise Pitch Deck", modified: "Yesterday", owner: "Sales Enablement" },
       { type: "Word", title: "Customer Quote Template", modified: "Jul 16", owner: "Deal Desk" },
       { type: "PDF", title: "Customer Success Stories", modified: "Jul 10", owner: "Marketing" },

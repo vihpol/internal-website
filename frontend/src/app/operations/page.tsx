@@ -21,12 +21,12 @@ export default function OperationsPage() {
       { title: "Equipment return process updated", meta: "Business Operations · July 15" },
     ],
     libraries: [
-      { icon: "📁", title: "Standard Procedures", description: "Approved operating procedures", items: 28 },
-      { icon: "📁", title: "Inventory & Assets", description: "Inventory records and asset documents", items: 19 },
-      { icon: "📁", title: "Shipping & Logistics", description: "Shipping, receiving, and returns", items: 14 },
+      { icon: "📁", title: "IT Related", description: "Engineering IT planning documents", items: 1, href: "https://netorgft13495013.sharepoint.com/sites/micas-engineering/Shared%20Documents/IT%20related" },
+      { icon: "📁", title: "San Jose HQ Lab", description: "Lab operations and resources", items: 5, href: "https://netorgft13495013.sharepoint.com/sites/micas-engineering/Shared%20Documents/San%20Jose%20HQ%20Lab" },
+      { icon: "📁", title: "Technical Support", description: "Technical support workspace", items: 0, href: "https://netorgft13495013.sharepoint.com/sites/micas-engineering/Shared%20Documents/Technical%20Support" },
     ],
     documents: [
-      { type: "Word", title: "Warehouse Receiving Procedure", modified: "Today", owner: "Facilities" },
+      { type: "Word", title: "IT Plan", modified: "Dec 11", owner: "Micas Engineering", href: "https://netorgft13495013.sharepoint.com/sites/micas-engineering/_layouts/15/Doc.aspx?sourcedoc=%7BE88471A3-B4F2-4BD0-A3B5-7C6FB8E97C27%7D&file=IT%20plan.docx&action=default&mobileredirect=true" },
       { type: "Excel", title: "Network Equipment Inventory", modified: "Today", owner: "Operations" },
       { type: "PDF", title: "Equipment Return Process", modified: "Jul 15", owner: "Business Operations" },
       { type: "PowerPoint", title: "Operations Safety Training", modified: "Jul 9", owner: "Facilities" },

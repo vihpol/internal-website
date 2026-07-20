@@ -225,10 +225,10 @@ input.gsc-input { min-height: 54px !important; padding: 0 20px !important; backg
 .sharepoint-access { padding: 7px 11px; border: 1px solid color-mix(in srgb, var(--department-accent) 35%, var(--line)); border-radius: 999px; background: var(--department-soft); color: var(--department-accent); font: 600 10px "IBM Plex Mono", monospace; }
 .sharepoint-libraries, .sharepoint-recent { margin-top: 28px; }
 .sharepoint-library-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 13px; }
-.sharepoint-library-grid button { display: flex; align-items: center; gap: 13px; min-width: 0; padding: 17px; border: 1px solid var(--line); border-radius: 12px; background: white; color: var(--ink); cursor: pointer; text-align: left; transition: .18s ease; }
-.sharepoint-library-grid button:hover { transform: translateY(-2px); border-color: color-mix(in srgb, var(--department-accent) 45%, var(--line)); box-shadow: 0 10px 24px rgba(12,39,64,.07); }
+.sharepoint-library-grid a { display: flex; align-items: center; gap: 13px; min-width: 0; padding: 17px; border: 1px solid var(--line); border-radius: 12px; background: white; color: var(--ink); cursor: pointer; text-align: left; text-decoration: none; transition: .18s ease; }
+.sharepoint-library-grid a:hover { transform: translateY(-2px); border-color: color-mix(in srgb, var(--department-accent) 45%, var(--line)); box-shadow: 0 10px 24px rgba(12,39,64,.07); }
 .sharepoint-folder { display: grid; width: 42px; height: 42px; flex: 0 0 auto; place-items: center; border-radius: 9px; background: var(--department-soft); font-size: 19px; }
-.sharepoint-library-grid button > span:nth-child(2) { min-width: 0; flex: 1; }
+.sharepoint-library-grid a > span:nth-child(2) { min-width: 0; flex: 1; }
 .sharepoint-library-grid strong, .sharepoint-library-grid small, .sharepoint-library-grid em { display: block; }
 .sharepoint-library-grid strong { overflow: hidden; font-size: 13px; text-overflow: ellipsis; white-space: nowrap; }
 .sharepoint-library-grid small { margin-top: 4px; color: var(--muted); font-size: 10.5px; line-height: 1.35; }
@@ -238,8 +238,8 @@ input.gsc-input { min-height: 54px !important; padding: 0 20px !important; backg
 .sharepoint-list-heading > button { border: 0; background: transparent; color: #23849a; cursor: pointer; font: 500 10px "IBM Plex Mono", monospace; }
 .sharepoint-table { overflow: hidden; border: 1px solid var(--line); border-radius: 13px; background: white; }
 .sharepoint-row { display: grid; width: 100%; grid-template-columns: minmax(260px, 1.7fr) minmax(100px, .5fr) minmax(150px, .65fr); align-items: center; gap: 18px; padding: 13px 18px; border: 0; border-bottom: 1px solid var(--line); background: white; color: var(--muted); font-size: 11.5px; text-align: left; }
-button.sharepoint-row { cursor: pointer; }
-button.sharepoint-row:hover { background: #f4fafb; }
+a.sharepoint-row { cursor: pointer; text-decoration: none; }
+a.sharepoint-row:hover { background: #f4fafb; }
 .sharepoint-row:last-child { border-bottom: 0; }
 .sharepoint-row-head { padding-block: 10px; background: #f6f9fa; color: var(--soft); font: 500 9.5px "IBM Plex Mono", monospace; letter-spacing: .7px; text-transform: uppercase; }
 .sharepoint-file { display: flex; min-width: 0; align-items: center; gap: 11px; }

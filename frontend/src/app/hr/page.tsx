@@ -21,12 +21,12 @@ export default function HRPage() {
       { title: "New manager learning series", meta: "Learning & Development · July 15" },
     ],
     libraries: [
-      { icon: "📁", title: "Policies & Handbooks", description: "Workplace policies and employee guidance", items: 18 },
-      { icon: "📁", title: "Benefits", description: "Plans, enrollment, and wellness resources", items: 12 },
-      { icon: "📁", title: "Forms & Templates", description: "HR requests and standard forms", items: 9 },
+      { icon: "📁", title: "Factory Policy", description: "Engineering factory policies", items: 3, href: "https://netorgft13495013.sharepoint.com/sites/micas-engineering/Shared%20Documents/Factory%20policy" },
+      { icon: "📁", title: "General", description: "General engineering documents", items: 2, href: "https://netorgft13495013.sharepoint.com/sites/micas-engineering/Shared%20Documents/General" },
+      { icon: "📁", title: "Engineering Documents", description: "Open the complete document library", items: 28, href: "https://netorgft13495013.sharepoint.com/sites/micas-engineering/Shared%20Documents" },
     ],
     documents: [
-      { type: "PDF", title: "MICAS Employee Handbook 2026", modified: "Today", owner: "People Operations" },
+      { type: "PowerPoint", title: "Pre-Installed Software for Shipment", modified: "Apr 7", owner: "Micas Engineering", href: "https://netorgft13495013.sharepoint.com/sites/micas-engineering/_layouts/15/Doc.aspx?sourcedoc=%7B9549D8A5-5307-4333-B413-D0CCBAEEC418%7D&file=Pre-Installed%20Software%20for%20Shipment%20of%20Micas%20Networks%20Full%20Series%20Whitebox%20Products.pptx&action=default&mobileredirect=true" },
       { type: "Word", title: "Paid Time Off Policy", modified: "Jul 18", owner: "HR Team" },
       { type: "Excel", title: "2026 Holiday Calendar", modified: "Jul 12", owner: "People Operations" },
       { type: "PowerPoint", title: "New Hire Orientation", modified: "Jul 8", owner: "HR Team" },

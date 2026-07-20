@@ -12,8 +12,8 @@ export type PortalData = {
   highlights: { label: string; value: string; note: string }[];
   tools: { icon: string; title: string; description: string }[];
   updates: { title: string; meta: string }[];
-  libraries: { icon: string; title: string; description: string; items: number }[];
-  documents: { type: "Word" | "Excel" | "PowerPoint" | "PDF"; title: string; modified: string; owner: string }[];
+  libraries: { icon: string; title: string; description: string; items: number; href?: string }[];
+  documents: { type: "Word" | "Excel" | "PowerPoint" | "PDF"; title: string; modified: string; owner: string; href?: string }[];
 };
 
 const navigation = [
@@ -71,11 +71,11 @@ export default function DepartmentPortal({ data }: { data: PortalData }) {
             <div className="department-section-heading"><span /> <h2>Document libraries</h2></div>
             <div className="sharepoint-library-grid">
               {data.libraries.map((library) => (
-                <button type="button" key={library.title}>
+                <a href={library.href ?? "https://netorgft13495013.sharepoint.com/sites/micas-engineering"} target="_blank" rel="noreferrer" key={library.title}>
                   <span className="sharepoint-folder" aria-hidden="true">{library.icon}</span>
                   <span><strong>{library.title}</strong><small>{library.description}</small><em>{library.items} items</em></span>
                   <b aria-hidden="true">›</b>
-                </button>
+                </a>
               ))}
             </div>
           </section>
@@ -85,13 +85,13 @@ export default function DepartmentPortal({ data }: { data: PortalData }) {
             <div className="sharepoint-table" role="table" aria-label={`${data.name} recent documents`}>
               <div className="sharepoint-row sharepoint-row-head" role="row"><span>Name</span><span>Modified</span><span>Owner</span></div>
               {data.documents.map((document) => (
-                <button className="sharepoint-row" type="button" role="row" key={document.title}>
+                <a className="sharepoint-row" href={document.href ?? "https://netorgft13495013.sharepoint.com/sites/micas-engineering"} target="_blank" rel="noreferrer" role="row" key={document.title}>
                   <span className="sharepoint-file"><i className={`file-${document.type.toLowerCase()}`}>{document.type.charAt(0)}</i><span><strong>{document.title}</strong><small>{document.type} document</small></span></span>
                   <span>{document.modified}</span><span>{document.owner}</span>
-                </button>
+                </a>
               ))}
             </div>
-            <p className="sharepoint-notice">🔐 Mock content only. A future Microsoft 365 connection will use each employee&apos;s existing SharePoint permissions.</p>
+            <p className="sharepoint-notice">🔐 Opens in Microsoft SharePoint. Employees will be asked to sign in when needed, and existing permissions determine access.</p>
           </section>
         </section>
       </div>
